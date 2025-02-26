@@ -13,6 +13,20 @@ impl Account {
             balance: 0,
         }
     }
+
+    fn deposit(&mut self, amount: i32) -> i32 {
+        self.balance += amount;
+        self.balance
+    }
+
+    fn widthdraw(&mut self, amount: i32) -> i32 {
+        self.balance -= amount;
+        self.balance
+    }
+
+    fn summary(&self) -> String {
+        format!("{} has a balance {}", self.holder, self.balance)
+    }
 }
 
 #[derive(Debug)]
@@ -34,7 +48,12 @@ impl Bank {
 
 fn main() {
     let mut bank = Bank::new();
-    let account = Account::new(1, String::from("me"));
+    let mut account = Account::new(1, String::from("me"));
+
+    account.deposit(500);
+    account.widthdraw(250);
+
+    println!("{}", account.summary());
 
     bank.add_account(account);
 
