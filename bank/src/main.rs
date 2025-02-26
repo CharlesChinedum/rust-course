@@ -55,8 +55,6 @@ impl Bank {
     }
 }
 
-// helper
-
 fn main() {
     let mut bank = Bank::new();
     let mut account = Account::new(1, String::from("me"));
