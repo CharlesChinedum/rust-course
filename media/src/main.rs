@@ -33,19 +33,14 @@ impl Catalog {
         self.items.push(media);
     }
 
-    fn get_by_index(&self, index: usize) -> MightHaveAValue {
+    fn get_by_index(&self, index: usize) -> Option<&Media> {
         if self.items.len() > index {
             // Good
-            MightHaveAValue::AValue(&self.items[index])
+            Some(&self.items[index])
         } else {
-            MightHaveAValue::NoValue
+            None
         }
     }
-}
-
-enum MightHaveAValue<'a> {
-    AValue(&'a Media),
-    NoValue,
 }
 
 fn print_media(media: Media) {
@@ -101,7 +96,7 @@ fn main() {
     //     }
     // }
 
-    if let MightHaveAValue::AValue(value) = item {
+    if let Some(value) = item {
         println!("Item in pattern match: {:#?}", value);
     } else {
         println!("Item not found in pattern match");
