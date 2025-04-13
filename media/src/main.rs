@@ -3,6 +3,8 @@ enum Media {
     Book { title: String, author: String },
     Movie { title: String, director: String },
     Audiobook { title: String },
+    Podcast(u32),
+    Placeholder,
 }
 
 impl Media {
@@ -11,6 +13,8 @@ impl Media {
             Media::Book { title, author } => format!("{} by {}", title, author),
             Media::Movie { title, director } => format!("{} by {}", title, director),
             Media::Audiobook { title } => format!("{}", title),
+            Media::Podcast(episode_number) => format!("Podcast #{}", episode_number),
+            Media::Placeholder => format!("Placeholder"),
         }
     }
 }
@@ -49,19 +53,26 @@ fn main() {
         author: String::from("Bad Author"),
     };
 
+    let podcast = Media::Podcast(10);
+
+    let placeholder = Media::Placeholder;
+
     // println!("{}", audiobook.description());
-    // println!("{}", good_movie.description());
-    // println!("{}", bad_book.description());
 
     let mut catalog = Catalog::new();
 
     catalog.add(audiobook);
     catalog.add(good_movie);
     catalog.add(bad_book);
+    catalog.add(podcast);
+    catalog.add(placeholder);
 
-    println!("{:#?}", catalog);
-
-    // println!("{:#?}", good_movie);
-    // println!("{:#?}", bad_book);
-    // println!("{:#?}", audiobook);
+    match catalog.items.get(100) {
+        Some(value) => {
+            println!("Item {:#?}", value);
+        }
+        Option::None => {
+            println!("Item not found");
+        }
+    }
 }
