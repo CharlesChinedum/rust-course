@@ -76,31 +76,8 @@ fn main() {
     catalog.add(podcast);
     catalog.add(placeholder);
 
-    // match catalog.items.get(100) {
-    //     Some(value) => {
-    //         println!("Item {:#?}", value);
-    //     }
-    //     Option::None => {
-    //         println!("Item not found");
-    //     }
-    // }
+    let item = catalog.get_by_index(10);
+    let placeholder = Media::Placeholder;
 
-    let item = catalog.get_by_index(3);
-
-    match item {
-        Some(value) => {
-            println!("Item {:#?}", value);
-        }
-        None => {
-            println!("Item not found");
-        }
-    }
-
-    // if let Some(value) = item {
-    //     println!("Item in pattern match: {:#?}", value);
-    // } else {
-    //     println!("Item not found in pattern match");
-    // }
-
-    // println!("Item {:#?}", item);
+    println!("{:#?}", item.unwrap_or(&placeholder));
 }
