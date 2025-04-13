@@ -85,22 +85,22 @@ fn main() {
     //     }
     // }
 
-    let item = catalog.get_by_index(0);
+    let item = catalog.get_by_index(3);
 
-    // match item {
-    //     MightHaveAValue::AValue(value) => {
-    //         println!("Item {:#?}", value);
-    //     }
-    //     MightHaveAValue::NoValue => {
-    //         println!("Item not found");
-    //     }
-    // }
-
-    if let Some(value) = item {
-        println!("Item in pattern match: {:#?}", value);
-    } else {
-        println!("Item not found in pattern match");
+    match item {
+        Some(value) => {
+            println!("Item {:#?}", value);
+        }
+        None => {
+            println!("Item not found");
+        }
     }
+
+    // if let Some(value) = item {
+    //     println!("Item in pattern match: {:#?}", value);
+    // } else {
+    //     println!("Item not found in pattern match");
+    // }
 
     // println!("Item {:#?}", item);
 }
