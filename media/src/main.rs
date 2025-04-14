@@ -32,7 +32,7 @@ fn main() {
     catalog.add(podcast);
     catalog.add(placeholder);
 
-    let item = catalog.get_by_index(10);
+    let item = catalog.get_by_index(0);
     let placeholder = Media::Placeholder;
 
     println!("{:#?}", item.unwrap_or(&placeholder));
