@@ -6,7 +6,7 @@ fn main() {
 
     // println!("{:#?}", text);
 
-    match divide(5.0, 0.0) {
+    match divide(5.0, 3.0) {
         Ok(reult) => {
             println!("Result: {}", reult);
         }
