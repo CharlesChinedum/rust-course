@@ -23,9 +23,7 @@ fn main() -> Result<(), Error> {
     Ok(())
 
     // let text = fs::read_to_string("logs.txt").expect("failed to read text");
-
     // let error_logs = extract_errors(text.as_str());
-
     // fs::write("errors.txt", error_logs.join("\n")).expect("Failed to write to errors.txt")
 
     // match fs::read_to_string("logs.txt") {
