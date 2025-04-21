@@ -1,3 +1,9 @@
+fn print_elements(elements: &Vec<String>) {
+    for element in elements {
+        println!("{}", element);
+    }
+}
+
 fn main() {
     let colors = vec![
         String::from("red"),
@@ -5,11 +11,5 @@ fn main() {
         String::from("blue"),
     ];
 
-    // Create an iterator over the vector
-    let mut colors_iter = colors.iter();
-
-    println!("{:#?}", colors_iter.next());
-    println!("{:#?}", colors_iter.next());
-    println!("{:#?}", colors_iter.next());
-    println!("{:#?}", colors_iter.next());
+    print_elements(&colors);
 }
