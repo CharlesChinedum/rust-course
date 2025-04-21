@@ -1,43 +1,47 @@
 use std::fs;
 use std::io::Error;
 
-fn main() {
-    // let text = fs::read_to_string("logs.txt");
+fn extract_errors(text: &str) -> Vec<String> {
+    let split_text = text.split("\n");
 
-    // println!("{:#?}", text);
+    let mut results = vec![];
 
-    match divide(5.0, 3.0) {
-        Ok(reult) => {
-            println!("Result: {}", reult);
-        }
-        Err(error) => {
-            println!("Error: {}", error);
+    for line in split_text {
+        if line.starts_with("ERROR") {
+            results.push(line.to_string());
         }
     }
 
-    let email = String::from("test@test.com");
-
-    match validate_email(email) {
-        Ok(..) => println!("Valid email"),
-
-        Err(error) => {
-            println!("Error: {}", error)
-        }
-    }
+    results
 }
 
-fn validate_email(email: String) -> Result<(), Error> {
-    if email.contains("@") {
-        Ok(())
-    } else {
-        Err(Error::other("Invalid email address"))
-    }
-}
+fn main() -> Result<(), Error> {
+    let text = fs::read_to_string("logs.txt")?;
+    let error_logs = extract_errors(text.as_str());
+    fs::write("errors.txt", error_logs.join("\n"))?;
 
-fn divide(a: f64, b: f64) -> Result<f64, Error> {
-    if b == 0.0 {
-        Err(Error::other("Division by zero"))
-    } else {
-        Ok(a / b)
-    }
+    Ok(())
+
+    // let text = fs::read_to_string("logs.txt").expect("failed to read text");
+
+    // let error_logs = extract_errors(text.as_str());
+
+    // fs::write("errors.txt", error_logs.join("\n")).expect("Failed to write to errors.txt")
+
+    // match fs::read_to_string("logs.txt") {
+    //     Ok(text) => {
+    //         let error_logs = extract_errors(text.as_str());
+
+    //         match fs::write("errors.txt", error_logs.join("\n")) {
+    //             Ok(..) => println!("Wrote errors.txt"),
+    //             Err(error) => {
+    //                 println!("Writing of errors.txt failed: {}", error)
+    //             }
+    //         }
+    //     }
+
+    //     Err(error) => {
+    //         println!("Failed to read: {}", error);
+    //     }
+    // }
 }
