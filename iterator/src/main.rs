@@ -22,6 +22,10 @@ fn to_uppercase(elements: &[String]) -> Vec<String> {
         .collect::<Vec<String>>()
 }
 
+fn move_elements(vec_a: Vec<String>, vec_b: &mut Vec<String>) {
+    vec_a.into_iter().for_each(|el| vec_b.push(el));
+}
+
 fn main() {
     let mut colors = vec![
         String::from("red"),
@@ -34,6 +38,12 @@ fn main() {
     // shorten_strings(&mut colors);
     // println!("{:#?}", colors);
 
-    let uppercased_colors = to_uppercase(&colors);
-    println!("{:#?}", uppercased_colors);
+    // let uppercased_colors = to_uppercase(&colors);
+    // println!("{:#?}", uppercased_colors);
+
+    let mut destination_vec = vec![];
+    println!("{:#?} initial", destination_vec);
+
+    move_elements(colors, &mut destination_vec);
+    println!("Destination: {:#?}", destination_vec);
 }
